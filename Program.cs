@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Threading;
+using System.Text;
 
 namespace SpinningCubes {
     class Program {
-        static double A, B, C; // Angles of rotation
+        static double A, B, C; // -Angles of rotation-
 
         static double cubeWidth = 20;
         static int gridWidth = 160, gridHeight = 44;
@@ -15,10 +16,17 @@ namespace SpinningCubes {
         static double FOVScaleFactor = 40;
         static double incrementSpeed = 0.6;
 
-        static double x, y, z; // Rotated 3D coordinates
+        static double x, y, z; // -Rotated 3D coordinates-
         static double ooz;
         static int screenX, screenY;
         static int bufferIndex;
+
+        // -Variables for color-
+        static string[] colorBuffer = new string[160 * 44];
+        static string colorReset = "\x1b[0m";
+        static string colorCyan = "\x1b[36m";
+        static string colorGreen = "\x1b[32m";
+        static string colorMagenta = "\x1b[35m";
 
         static double calculateX(double i, double j, double k) {
             return j * Math.Sin(A) * Math.Sin(B) * Math.Cos(C) - 
@@ -42,12 +50,12 @@ namespace SpinningCubes {
                    i * Math.Sin(B);
         }
 
-        static void calculateForSurface(double cubeX, double cubeY, double cubeZ, char ch) {
+        static void calculateForSurface(double cubeX, double cubeY, double cubeZ, char ch, string color) {
             x = calculateX(cubeX, cubeY, cubeZ);
             y = calculateY(cubeX, cubeY, cubeZ);
             z = calculateZ(cubeX, cubeY, cubeZ) + distanceFromCamera;
 
-            ooz = 1 / z; // "One over z"
+            ooz = 1 / z; // -"One over z"-
 
             screenX = (int)(gridWidth / 2 + horizontalOffset + FOVScaleFactor * ooz * x * 2);
             screenY = (int)(gridHeight / 2 + FOVScaleFactor * ooz * y);
@@ -58,10 +66,13 @@ namespace SpinningCubes {
                 if (ooz > zBuffer[bufferIndex]) {
                     zBuffer[bufferIndex] = ooz;
                     buffer[bufferIndex] = ch;
+                    colorBuffer[bufferIndex] = color;
                 }
             }
         }
         
+       static StringBuilder frame = new StringBuilder(gridWidth * gridHeight * 2); // -StringBuilder for coloring the output-
+
         static void Main() {
             Console.CursorVisible = false;
             Console.Clear();
@@ -71,56 +82,66 @@ namespace SpinningCubes {
             while (true) {
                 Array.Fill(buffer, backgroundASCIICode);
                 Array.Fill(zBuffer, 0);
+                Array.Fill(colorBuffer, colorReset);
 
-                // First Cube
+                // -First Cube-
                 cubeWidth = 20;
                 horizontalOffset = -2 * cubeWidth;
                 for (double cubeX = -cubeWidth; cubeX < cubeWidth; cubeX += incrementSpeed) {
                     for (double cubeY = -cubeWidth; cubeY < cubeWidth; cubeY += incrementSpeed) {
-                        calculateForSurface(cubeX, cubeY, -cubeWidth, '@');
-                        calculateForSurface(cubeWidth, cubeY, cubeX, '$');
-                        calculateForSurface(-cubeWidth, cubeY, -cubeX, '~');
-                        calculateForSurface(-cubeX, cubeY, cubeWidth, '#');
-                        calculateForSurface(cubeX, -cubeWidth, -cubeY, ';');
-                        calculateForSurface(cubeX, cubeWidth, cubeY, '+');
+                        calculateForSurface(cubeX, cubeY, -cubeWidth, '@', colorCyan);
+                        calculateForSurface(cubeWidth, cubeY, cubeX, '$', colorCyan);
+                        calculateForSurface(-cubeWidth, cubeY, -cubeX, '~', colorCyan);
+                        calculateForSurface(-cubeX, cubeY, cubeWidth, '#', colorCyan);
+                        calculateForSurface(cubeX, -cubeWidth, -cubeY, ';', colorCyan);
+                        calculateForSurface(cubeX, cubeWidth, cubeY, '+', colorCyan);
                     }
                 }
-                // Second Cube
+                // -Second Cube-
                 cubeWidth = 10;
                 horizontalOffset = 1 * cubeWidth;
                 for (double cubeX = -cubeWidth; cubeX < cubeWidth; cubeX += incrementSpeed) {
                     for (double cubeY = -cubeWidth; cubeY < cubeWidth; cubeY += incrementSpeed) {
-                        calculateForSurface(cubeX, cubeY, -cubeWidth, '@');
-                        calculateForSurface(cubeWidth, cubeY, cubeX, '$');
-                        calculateForSurface(-cubeWidth, cubeY, -cubeX, '~');
-                        calculateForSurface(-cubeX, cubeY, cubeWidth, '#');
-                        calculateForSurface(cubeX, -cubeWidth, -cubeY, ';');
-                        calculateForSurface(cubeX, cubeWidth, cubeY, '+');
+                        calculateForSurface(cubeX, cubeY, -cubeWidth, '@', colorGreen);
+                        calculateForSurface(cubeWidth, cubeY, cubeX, '$', colorGreen);
+                        calculateForSurface(-cubeWidth, cubeY, -cubeX, '~', colorGreen);
+                        calculateForSurface(-cubeX, cubeY, cubeWidth, '#', colorGreen);
+                        calculateForSurface(cubeX, -cubeWidth, -cubeY, ';', colorGreen);
+                        calculateForSurface(cubeX, cubeWidth, cubeY, '+', colorGreen);
                     }
                 }
 
-                // Third Cube
+                // -Third Cube-
                 cubeWidth = 5;
                 horizontalOffset = 8 * cubeWidth;
                 for (double cubeX = -cubeWidth; cubeX < cubeWidth; cubeX += incrementSpeed) {
                     for (double cubeY = -cubeWidth; cubeY < cubeWidth; cubeY += incrementSpeed) {
-                        calculateForSurface(cubeX, cubeY, -cubeWidth, '@');
-                        calculateForSurface(cubeWidth, cubeY, cubeX, '$');
-                        calculateForSurface(-cubeWidth, cubeY, -cubeX, '~');
-                        calculateForSurface(-cubeX, cubeY, cubeWidth, '#');
-                        calculateForSurface(cubeX, -cubeWidth, -cubeY, ';');
-                        calculateForSurface(cubeX, cubeWidth, cubeY, '+');
+                        calculateForSurface(cubeX, cubeY, -cubeWidth, '@', colorMagenta);
+                        calculateForSurface(cubeWidth, cubeY, cubeX, '$', colorMagenta);
+                        calculateForSurface(-cubeWidth, cubeY, -cubeX, '~', colorMagenta);
+                        calculateForSurface(-cubeX, cubeY, cubeWidth, '#', colorMagenta);
+                        calculateForSurface(cubeX, -cubeWidth, -cubeY, ';', colorMagenta);
+                        calculateForSurface(cubeX, cubeWidth, cubeY, '+', colorMagenta);
                     }
                 }
 
-                // Render Frame
-                int consoleIndex = 0;
+                // -Render Frame-
+                frame.Clear();
+                string currentColor = colorReset;
+
                 for (int iterateY = 0; iterateY < gridHeight; iterateY++) {
                     for (int iterateX = 0; iterateX < gridWidth; iterateX++) {
-                        consoleBuffer[consoleIndex++] = buffer[iterateX + iterateY * gridWidth];
+                        int index = iterateX + iterateY * gridWidth;
+                        string pixelColor = colorBuffer[index];
+                        if (pixelColor != currentColor) {
+                            frame.Append(pixelColor);
+                            currentColor = pixelColor;
+                        }
                     }
-                    consoleBuffer[consoleIndex++] = '\n';
+                    frame.Append('\n');
                 }
+                frame.Append(colorReset);
+
                 Console.SetCursorPosition(0, 0);
                 Console.Write(consoleBuffer);
 
