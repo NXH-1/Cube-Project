@@ -1,0 +1,15 @@
+C:\Users\huxiN\OneDrive\Desktop\Projects\Solo Projects\Cube-Project\obj\Debug\net10.0\Cube-Project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\huxiN\OneDrive\Desktop\Projects\Solo Projects\Cube-Project\obj\Debug\net10.0\Cube-Project.AssemblyInfoInputs.cache
+C:\Users\huxiN\OneDrive\Desktop\Projects\Solo Projects\Cube-Project\obj\Debug\net10.0\Cube-Project.AssemblyInfo.cs
+C:\Users\huxiN\OneDrive\Desktop\Projects\Solo Projects\Cube-Project\obj\Debug\net10.0\Cube-Project.csproj.CoreCompileInputs.cache
+C:\Users\huxiN\OneDrive\Desktop\Projects\Solo Projects\Cube-Project\obj\Debug\net10.0\Cube-Project.sourcelink.json
+C:\Users\huxiN\OneDrive\Desktop\Projects\Solo Projects\Cube-Project\bin\Debug\net10.0\Cube-Project.exe
+C:\Users\huxiN\OneDrive\Desktop\Projects\Solo Projects\Cube-Project\bin\Debug\net10.0\Cube-Project.deps.json
+C:\Users\huxiN\OneDrive\Desktop\Projects\Solo Projects\Cube-Project\bin\Debug\net10.0\Cube-Project.runtimeconfig.json
+C:\Users\huxiN\OneDrive\Desktop\Projects\Solo Projects\Cube-Project\bin\Debug\net10.0\Cube-Project.dll
+C:\Users\huxiN\OneDrive\Desktop\Projects\Solo Projects\Cube-Project\bin\Debug\net10.0\Cube-Project.pdb
+C:\Users\huxiN\OneDrive\Desktop\Projects\Solo Projects\Cube-Project\obj\Debug\net10.0\Cube-Project.dll
+C:\Users\huxiN\OneDrive\Desktop\Projects\Solo Projects\Cube-Project\obj\Debug\net10.0\refint\Cube-Project.dll
+C:\Users\huxiN\OneDrive\Desktop\Projects\Solo Projects\Cube-Project\obj\Debug\net10.0\Cube-Project.pdb
+C:\Users\huxiN\OneDrive\Desktop\Projects\Solo Projects\Cube-Project\obj\Debug\net10.0\Cube-Project.genruntimeconfig.cache
+C:\Users\huxiN\OneDrive\Desktop\Projects\Solo Projects\Cube-Project\obj\Debug\net10.0\ref\Cube-Project.dll
