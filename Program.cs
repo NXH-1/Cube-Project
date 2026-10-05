@@ -137,13 +137,17 @@ namespace SpinningCubes {
                             frame.Append(pixelColor);
                             currentColor = pixelColor;
                         }
+                        frame.Append(buffer[index]);
                     }
-                    frame.Append('\n');
+                    if (iterateY < gridHeight - 1) { 
+                        frame.Append('\n');
+                    }
+                    
                 }
                 frame.Append(colorReset);
 
                 Console.SetCursorPosition(0, 0);
-                Console.Write(consoleBuffer);
+                Console.Write(frame.ToString());
 
                 A += 0.05;
                 B += 0.05;
