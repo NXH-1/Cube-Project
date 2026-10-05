@@ -12,6 +12,8 @@ Instead of using the ANSI escape code `\x1b[2J`, create a `char[]` and call `Con
 Used `Array.Fill()` to clear buffers for handling memory safely
 
 ## Running the program
+Ensure you increase the size of your terminal enough to see the cube
+
 ``` Terminal
 dotnet run
 ```
