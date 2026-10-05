@@ -19,5 +19,27 @@ namespace SpinningCubes {
         static double ooz;
         static int screenX, screenY;
         static int bufferIndex;
+
+        static double calculateX(double i, double j, double k) {
+            return j * Math.Sin(A) * Math.Sin(B) * Math.Cos(C) - 
+                   k * Math.Cos(A) * Math.Sin(B) * Math.Cos(C) + 
+                   j * Math.Cos(A) * Math.Sin(C) +
+                   k * Math.Sin(A) * Math.Sin(C) + 
+                   i * Math.Cos(B) * Math.Cos(C);
+        }
+
+        static double calculateY(double i, double j, double k) {
+            return j * Math.Cos(A) * Math.Cos(C) + 
+                   k * Math.Sin(A) * Math.Cos(C) - 
+                   j * Math.Sin(A) * Math.Sin(B) * Math.Sin(C) + 
+                   k * Math.Cos(A) * Math.Sin(B) * Math.Sin(C) -
+                   i * Math.Cos(B) * Math.Sin(C);
+        }
+
+        static double calculateZ(double i, double j, double k) {
+            return k * Math.Cos(A) * Math.Cos(B) - 
+                   j * Math.Sin(A) * Math.Cos(B) + 
+                   i * Math.Sin(B);
+        }
     }
 }
