@@ -41,5 +41,25 @@ namespace SpinningCubes {
                    j * Math.Sin(A) * Math.Cos(B) + 
                    i * Math.Sin(B);
         }
+
+        static void calculateForSurface(double cubeX, double cubeY, double cubeZ, char ch) {
+            x = calculateX(cubeX, cubeY, cubeZ);
+            y = calculateY(cubeX, cubeY, cubeZ);
+            z = calculateZ(cubeX, cubeY, cubeZ) + distanceFromCamera;
+
+            ooz = 1 / z; // "One over z"
+
+            screenX = (int)(gridWidth / 2 + horizontalOffset + FOVScaleFactor * ooz * x * 2);
+            screenY = (int)(gridHeight / 2 + FOVScaleFactor * ooz * y);
+
+            bufferIndex = screenX + gridWidth * screenY;
+            
+            if (bufferIndex >= 0 && bufferIndex < gridWidth * gridHeight) {
+                if (ooz > zBuffer[bufferIndex]) {
+                    zBuffer[bufferIndex] = ooz;
+                    buffer[bufferIndex] = ch;
+                }
+            }
+        }   
     }
 }
